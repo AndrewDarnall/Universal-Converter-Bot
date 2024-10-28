@@ -26,10 +26,10 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint main.py
+          pylint main.py docbot/
         continue-on-error: false
 
       - name: Run Flake8
         run: |
-          flake8 main.py
+          flake8 main.py docbot/
         continue-on-error: false
