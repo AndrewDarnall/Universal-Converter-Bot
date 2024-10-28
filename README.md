@@ -14,11 +14,12 @@
 
 ## Requirements
 
-| Software  | Version  |
-|-----------|----------|
-| Python    | `3.12.2` |
-| pip       | `23.3.1` |
-| Docker    | `20.10.5`|       
+| Software      | Version  |
+|---------------|----------|
+| Python        | `3.12.2` |
+| pip           | `23.3.1` |
+| Docker        | `20.10.5`|
+| LibreOffice   | `7.0.4.2`|    
 
 
 ---
