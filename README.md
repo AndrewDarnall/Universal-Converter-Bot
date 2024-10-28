@@ -28,7 +28,7 @@ of any type of `libreoffice` supported document into a `.pdf` file (without havi
 
 ---
 
-# Usage
+# Installation
 
 To run the same Telegram bot, perform the following steps
 
@@ -50,5 +50,11 @@ docker build -t converter-bot-py .
 ```bash
 docker run -d --name converter_bot_py -e TELEGRAM_TOKEN=<your-telegram-bot-token> converter-bot-py
 ```
+
+---
+
+# Usage
+
+
 
 ---
