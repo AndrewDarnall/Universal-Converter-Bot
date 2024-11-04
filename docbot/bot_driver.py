@@ -1,23 +1,19 @@
 """ This module contains the code for the Bot """
 
-from os.path import join
-from os import getenv
+from os import environ
 from sys import exit as EXIT_FAILURE
 from subprocess import run as subproc_run
 
-from dotenv import load_dotenv
 from pyrogram import Client, filters
 from pyrogram.types.messages_and_media.message import Message
 
 from docbot.utils import replace_file_extension, get_basename
 
 
-env_path = join("config", ".env")
-load_dotenv(dotenv_path=env_path)
+API_ID = environ.get("API_ID")
+API_HASH = environ.get("API_HASH")
+BOT_TOKEN = environ.get("BOT_TOKEN")
 
-API_ID = getenv("API_ID")
-API_HASH = getenv("API_HASH")
-BOT_TOKEN = getenv("BOT_TOKEN")
 
 if API_ID is None:
     print(" !!! Check the Bot API_ID, the one you chose is None !!! ")

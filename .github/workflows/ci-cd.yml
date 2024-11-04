@@ -1,0 +1,55 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: ["Lint Python Code"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{secrets.DOCKER_USERNAME}}/converter-bot-py:latest .
+
+      - name: Push Docker Image
+        run: |
+          docker push ${{secrets.DOCKER_USERNAME}}/converter-bot-py:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  # Ensure this job runs after the build job
+    steps:
+      - name: SSH to Remote Server and Deploy
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_SERVER }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Stop the currently running container
+            docker stop conv-bot || true
+            docker rm conv-bot || true
+
+            # Pull the latest image
+            docker pull ${{secrets.DOCKER_USERNAME}}/converter-bot-py:latest
+
+            # Run the new container
+            docker run -d --name conv-bot -e API_ID=${{secrets.API_ID}} -e API_HASH=${{secrets.API_HASH}} -e BOT_TOKEN=${{secrets.BOT_TOKEN}} ${{secrets.DOCKER_USERNAME}}/converter-bot-py:latest

@@ -23,7 +23,6 @@ RUN python -m pip install --upgrade pip==23.3.1 && python -m pip install -r requ
 
 COPY main.py .
 COPY docbot/ ./docbot/
-COPY config/ ./config/
 
 
 CMD ["python", "main.py"]
