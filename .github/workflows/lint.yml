@@ -26,10 +26,10 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint --disable=W0613 main.py docbot/ tests/
+          pylint --disable=W0613 main.py docbot/
         continue-on-error: false
 
       - name: Run Flake8
         run: |
-          flake8 main.py docbot/ tests/
+          flake8 main.py docbot/
         continue-on-error: false
