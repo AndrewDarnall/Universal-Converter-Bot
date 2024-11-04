@@ -7,11 +7,11 @@ if [ "$#" -ne 3 ]; then
   exit 1
 fi
 
-export API_ID=$1 | sudo tee -a /etc/environment
-export API_HASH=$2 | sudo tee -a /etc/environment
-export BOT_TOKEN=$3 | sudo tee -a /etc/environment
+echo "export API_ID=$1" >> ~/.bashrc
+echo "export API_HASH=$2" >> ~/.bashrc
+echo "export BOT_TOKEN=$3" >> ~/.bashrc
 
-source /etc/environment
+source ~/.bashrc
 
 echo "Environment variables set:"
 echo "API_ID: $API_ID"
