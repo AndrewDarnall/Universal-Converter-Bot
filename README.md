@@ -65,7 +65,7 @@ cd Universal-Converter-Bot
 2) Populate the variables within the `./scripts/envs_setup.sh` script with your personal `API_ID`, `API_HASH` and `BOT_TOKEN` values, and run the following script
 
 ```bash
-bash ./scripts/envs_setup.sh
+bash ./scripts/envs_setup.sh "your_API_ID" "your_API_HASH" "your_BOT_TOKEN"
 ```
 
 3) Build the docker container from the `Dockerfile`
