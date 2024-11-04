@@ -28,4 +28,5 @@ repos:
     rev: v3.3.1
     hooks:
     -   id: pylint
-        additional_dependencies: [pylint]  # Add any specific dependencies if needed
+        args: [ "--disable=W0613" ]
+        additional_dependencies: [pylint, pyrogram, tgcrypto, python-dotenv]  # Add any specific dependencies if needed
