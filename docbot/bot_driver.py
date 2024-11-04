@@ -1,6 +1,6 @@
 """ This module contains the code for the Bot """
 
-from os import environ
+from os import environ, remove
 from sys import exit as EXIT_FAILURE
 from subprocess import run as subproc_run
 
@@ -72,6 +72,8 @@ def main() -> None:
             target_file_base = get_basename(file_path)
             target_file = replace_file_extension(target_file_base, ".pdf")
             await message.reply_document(target_file)
+            remove(file_path)
+            remove(target_file)
         else:
             await message.reply(
                 "I'm sorry but this file is not supported,"
